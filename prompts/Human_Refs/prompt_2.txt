@@ -1,0 +1,14 @@
+Anomaly Summary
+Downlink throughput sits at “near-idle” across all steps, but with healthy RF (strong SNR/EPRE).
+This looks like quiet traffic rather than impairment or congestion.
+DL/UL transmissions are low and steady with no burst curve, no ramping packet rate, and minimal retransmissions/errors—not a DDoS shape.
+LIME/SHAP agree that persistently tiny DL bitrate is the dominant signal; other features (clean error counters, low tx) pull the decision toward normal.
+Scheduler-side indicators (stable MCS/CQI) are consistent with an idle subscriber/cell.
+
+Misclassification Likelihood
+Low.
+The model is anchored by “quiet network on a clean RF link” with no growth in tx volume, errors, or retx—classic non-attack idleness.
+
+Mitigation Steps
+No essential steps to be made.
+Verify backhaul health for the sector/UE to confirm this is idleness (quick check of RSRP/EPRE, SNR, and scheduler stats).

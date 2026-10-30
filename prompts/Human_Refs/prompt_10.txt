@@ -1,0 +1,13 @@
+Anomaly Summary
+Sustained UL push: Uplink bitrate and packet volume stay high across all windows, with elevated UL retransmissions.
+Asymmetric traffic: Downlink remains comparatively quiet while RF quality and MCS/CQI are healthy, so the imbalance isn’t explained by poor radio.
+Explainability view: SHAP highlights UL bitrate/UL & DL tx (plus some DL bitrate influence) as the main drivers; LIME mostly agrees on the throughput/volume story despite minor threshold quirks
+No error accumulation: Error counters are essentially clean, which points to an egress-heavy workload or outbound flood rather than congestion or link impairment.
+
+Misclassification Likelihoo
+Moderate false-positive risk.  
+Could be legitimate UL-heavy activit since RF is good and errors are low; the model likely keys on the persistent UL load and retransmission levels.
+
+Mitigation Step
+Pin down top talkers and destinations on the affected UE/sector; if you see small, repetitive packets or wide fan-out, apply egress rate-limits or temporary ACLs.
+If the pattern persists post-shaping, notify/quarantine the source UE and check for backhaul policing conflicts that could be amplifying retries.

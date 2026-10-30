@@ -1,0 +1,15 @@
+Anomaly Summary
+Radio quality collapses across the window — SNR and CQI dip and MCS flattens — so the air interface is struggling rather than congested by traffic.
+Uplink and downlink throughput stay very low while retransmissions climb and a few downlink errors appear, which is the signature of a sick RF link.
+Traffic volume is modest and steady with no bursty surges or scheduler pressure you’d expect from a volumetric event.
+LIME/SHAP point to persistently low downlink bitrate and elevated downlink retransmissions as the dominant drivers of the decision.
+
+Misclassification Likelihod
+Likely false positive for DDoS. 
+The model is keying off “low bitrate + high re-tx,” but in context those are fully explained by poor RF conditions.
+A real flood would usually bring bursty tx patterns, asymmetry, or control-plane churn—none of which show up here.
+
+Mitigation Step
+Pull cell/sector RF KPIs for this interval (CQI/MCS, interference, coverage) and check neighbor relations/handovers to confirm a local radio issue; remediate if persistent.
+Put a short watch on this UE/sector: continue tracking uplink/downlink retransmissions and error rates; escalate only if they rise while RF recovers or if the pattern spreads to multiple UEs
+Correlate with backhaul/policy logs to rule out shaping or drops; if doubt remains, take a brief packet capture at the edge to verify the traffic mix.

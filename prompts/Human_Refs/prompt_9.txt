@@ -1,0 +1,13 @@
+Anomaly Summar
+Downlink is starved: DL bitrate stays near-zero while DL MCS/CQI are depressed.
+Asymmetric traffic: UL remains modest and steady with no surge in tx or errors; UL alive vs. DL stalled isn’t a DDoS shape.
+Explainers agree: LIME/SHAP weight the persistently tiny DL bitrate and elevated DL retransmissions as the main drivers; clean error counters partially offset but not enough.
+RF looks serviceable: Power/SNR aren’t collapsing, so the DL quality drop points to MAC/RLC/HARQ behavior rather than pure coverage loss.
+
+Misclassification Likelihoo
+Likely false positive (not DDoS): Model confidence is skewed by the “very low DL throughput” pattern plus DL retransmissions. No burst growth, no UL error ramp, no fan-out—doesn’t fit an attack profile.
+Unlikely false normal: If this were a flood, we’d expect rising tx volume, widening destination spread, or accumulating UL/DL errors—none observed.
+
+Mitigation Steps
+Validate DL pipeline: Check HARQ/BLER, RLC buffer build-up, and PDCCH scheduling for the affected UE/sector; clear stuck queues or rebalance schedulers.
+Tighten short-term monitoring (next hour): Watch DL retransmissions, CQI/MCS trend, and any uptick in UL errors; alert on sustained DL retx with stable SNR.

@@ -1,0 +1,33 @@
+# Core / data
+numpy>=1.19.5
+pandas>=1.2.0
+scikit-learn>=0.24.0
+imbalanced-learn
+statsmodels
+joblib
+tabulate
+
+# Deep learning & baselines
+tensorflow>=2.8.0
+xgboost
+
+# Explainability (XAI)
+shap
+lime
+timeshap
+tf-explain
+
+# LLM interpretation & evaluation
+openai          # also used for DeepSeek / OpenRouter (OpenAI-compatible APIs)
+mistralai
+google-genai
+tiktoken
+bert-score
+nltk
+py-readability-metrics
+
+# Plotting / notebooks
+matplotlib>=3.3.0
+seaborn>=0.11.0
+ipython
+psutil>=5.8.0

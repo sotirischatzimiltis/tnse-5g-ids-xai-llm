@@ -1,0 +1,16 @@
+Anomaly Summary
+Uplink is sustained and high across all three windows, with the model (and SHAP) leaning heavily on UL bitrate/UL tx to call this out.
+Downlink stays quiet while DL MCS/CQI remain healthy.
+An UL-heavy asymmetry that doesn’t look like idle behavior.
+UL retransmissions are elevated but steady and errors stay near zero, pointing to deliberate, high-rate sending rather than RF flapping or congestion.
+RF/scheduler indicators are good enough that we’d expect balanced traffic; the persistent DL silence vs. busy UL is the standout pattern.
+
+Misclassification Likelihood
+Moderate false-positive risk: Could be a legitimate UL-heavy workload given clean error counters and stable quality. 
+The model already flags it, and the drivers (UL bitrate/tx with steady UL retransmissions) match an outbound-flood shape more than normal usage.
+
+Mitigation Steps
+Identify and rate-limit top talkers on the affected sector.
+Take a short flow/pcap sample (5–10 min) to confirm protocol, packet size, and destination mix; watch for UDP reflection signatures or bot-style bursts.
+Tighten near-term monitoring on UL bitrate and UL retransmissions; alert on any upward trend or increased destination fan-out.
+If subscriber-originated, quarantine the source UEs if elevated UL persists after shaping.

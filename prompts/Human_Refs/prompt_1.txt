@@ -1,0 +1,12 @@
+Anomaly Summary
+Downlink throughput is nearly zero across all timesteps, with low DL MCS and CQI—suggesting inactivity or poor RF rather than congestion.
+DL/UL transmissions stay flat and low; no burst or ramp pattern typical of DDoS traffic.
+A few uplink retransmissions and minor UL errors appear but remain isolated, not escalating.
+SHAP and LIME both highlight dl_bitrate as the main driver, with tx features pulling the decision toward “normal.”
+
+Misclassification Likelihood
+Low:
+The model correctly interprets low throughput and bad RF as benign inactivity, not an attack.
+
+Mitigation Steps
+No essential mitigation steps needed.

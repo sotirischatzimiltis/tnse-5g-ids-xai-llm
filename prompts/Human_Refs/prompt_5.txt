@@ -1,0 +1,14 @@
+Anomaly Summary
+Downlink throughput and scheduling stay consistently high across the window, with radio quality holding steady (CQI/MCS flat). 
+That looks like a busy but healthy session rather than a congested or blocked one.
+Retransmissions are elevated on both links, but they rise alongside high tx volume and do not bring errors with them.
+Traffic is balanced UL↔DL and stable over time (no bursty spikes or step-changes). We’re not seeing the asymmetry or volatility typical of volumetric abuse.
+LIME/SHAP agree the decision is driven primarily by sustained high downlink bitrate pushing toward Normal, with tx/re-tx acting as secondary, countervailing signals.
+
+Misclassification Likelihood
+Low likelihood of a missed DDoS. 
+In this dataset, attacks trend toward suppressed DL throughput and collateral symptoms (error growth, erratic scheduling). 
+
+Mitigation Step
+Track retransmissions over the next hour; alert only if they rise with falling bitrate or growing error counters (tighten the composite rule, not the single metric)
+Correlate with scheduler/backhaul stats to confirm the re-tx uptick is load-related (e.g., momentary PRB contention) rather than packet loss.

@@ -1,0 +1,15 @@
+Anomaly Summary
+Downlink throughput is basically flatlined across all three timesteps while radio quality stays healthy (stable CQI/SNR and steady MCS). 
+That looks more like an idle/paused app than congestion or a flood.
+Uplink and downlink packet counts are modest and steady, with no spikes.
+Retransmissions and error counters remain near-zero throughout. There’s no sign of queueing, retries, or packet loss on either leg.
+Both LIME and SHAP put most of the weight on persistently low downlink bitrate; secondary influences are low tx activity and the absence of errors—together pointing to “nothing to send” rather than “can’t send.”
+
+Misclassification Likelihood
+Low risk of a missed DDoS. 
+True attacks in this dataset tend to drag up error/retransmission signals or distort tx patterns; here those indicators are quiet and RF is clean, so “Normal” is a reasonable call.
+
+Mitigation Steps
+Treat as low-traffic/idle unless corroborating signals appear. 
+Add a guardrail so “near-zero downlink bitrate” only escalates if it co-occurs with rising retransmissions or error rates
+Watch for the next hour: track uplink/downlink retransmissions, error counters, and CQI/MCS for any uptick that would contradict the idle hypothesis.

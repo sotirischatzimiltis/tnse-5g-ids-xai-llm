@@ -1,0 +1,14 @@
+Anomaly Summary
+Downlink throughput is essentially flatlined across all three intervals while radio conditions are healthy (strong SNR, stable uplink MCS).
+That points to an idle/paused application or traffic shaping rather than a flood.
+Packet counts are low in both directions with virtually no errors or retransmissions.
+We don’t see the burstiness, retries, or congestion side-effects that typically accompany volumetric abuse.
+LIME and SHAP both zero in on persistently low downlink bitrate as the dominant driver of the model’s decision; tx counters and error terms play a secondary role.
+
+Misclassification Likelihoo
+Low risk of a missed DDoS.
+A real attack in this environment usually drags up retransmissions/errors or causes anomalous tx activity.
+
+Mitigation Steps
+Treat this as a low-traffic/idle pattern.
+Add an alert distinction between “low-throughput with healthy RF” vs “low-throughput with RF degradation,” to cut future false alarms.

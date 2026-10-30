@@ -1,0 +1,12 @@
+Anomaly Summary
+The radio link looks unhealthy: CQI/MCS sit low and stay flat, so the air interface isn’t negotiating robust modulation.
+Retransmissions are consistently elevated on both uplink and downlink across the window.
+Downlink throughput is depressed while uplink activity remains comparatively busy, giving a UL-heavy, DL-starved pattern.
+LIME/SHAP both lean on low downlink bitrate, high re-tx, and low DL MCS as the main drivers behind the model’s Anomalous call.
+
+Misclassification Likelihood
+Low.
+
+Mitigation Steps
+Pull cell/sector RF KPIs for this interval (CQI/MCS trends, interference, PRB/scheduler metrics) and check neighbor/handover behavior to confirm a radio problem; remediate if persistent.
+Tighten post-processing: gate DDoS alerts when “low DL bitrate + low CQI/MCS + high re-tx” co-occur; only escalate if DL volume or control-plane anomalies rise with it.
